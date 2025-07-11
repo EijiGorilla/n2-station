@@ -135,20 +135,37 @@ export const prowLayer = new FeatureLayer({
 });
 
 // * Station Layer * //
-const stationLayerTextSymbol = labelSymbol3DLine({
-  materialColor: "#d4ff33",
-  fontSize: 15,
-  fontFamily: "Ubuntu Mono",
-  fontWeight: "normal",
-  haloColor: "black",
-  haloSize: 0.5,
-  vOffsetScreenLength: 100,
-  vOffsetMaxWorldLength: 700,
-  vOffsetMinWorldLength: 80,
-});
-
-var labelClass = new LabelClass({
-  symbol: stationLayerTextSymbol,
+const stationLayerTextSymbol = new LabelClass({
+  symbol: new LabelSymbol3D({
+    symbolLayers: [
+      new TextSymbol3DLayer({
+        material: {
+          color: "#d4ff33",
+        },
+        size: 13,
+        halo: {
+          color: "black",
+          size: 0.5,
+        },
+        font: {
+          family: "Ubuntu Mono",
+        },
+      }),
+    ],
+    verticalOffset: {
+      screenLength: 70,
+      maxWorldLength: 100,
+      minWorldLength: 50,
+    },
+    callout: {
+      type: "line", // autocasts as new LineCallout3D()
+      color: "white",
+      size: 0.7,
+      border: {
+        color: "grey",
+      },
+    },
+  }),
   labelPlacement: "above-center",
   labelExpressionInfo: {
     expression: 'DefaultValue($feature.Station, "no data")',
@@ -165,7 +182,7 @@ export const stationLayer = new FeatureLayer({
   },
   layerId: 2,
   title: "Station",
-  labelingInfo: [labelClass],
+  labelingInfo: [stationLayerTextSymbol],
   elevationInfo: {
     mode: "relative-to-ground",
   },
