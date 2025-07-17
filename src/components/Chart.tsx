@@ -18,6 +18,7 @@ import am5themes_Responsive from "@amcharts/amcharts5/themes/Responsive";
 import "../App.css";
 import {
   buildingLayerCategory,
+  construction_status,
   generateChartData,
   generateTotalProgress,
   layerVisibleTrue,
@@ -256,14 +257,13 @@ const Chart = () => {
       am5.Legend.new(root, {
         centerX: am5.p50,
         centerY: am5.percent(50),
-        x: am5.percent(60),
-        y: am5.percent(97),
+        x: am5.percent(50),
         marginTop: 20,
-        scale: 0.8,
-        // width: am5.percent(50),
+        scale: 0.75,
         layout: root.horizontalLayout,
       })
     );
+
     legendRef.current = legend;
 
     legend.labels.template.setAll({
@@ -271,7 +271,7 @@ const Chart = () => {
       fill: am5.color("#ffffff"),
       fontSize: legendFontSize,
       scale: 1.2,
-
+      marginRight: -50,
       //textDecoration: "underline"
       //fontWeight: '300',
     });
@@ -426,9 +426,9 @@ const Chart = () => {
       });
       legend.data.push(series);
     }
-    makeSeries("Complete", "comp");
-    makeSeries("Incomplete", "incomp");
-    makeSeries("Ongoing", "ongoing");
+    makeSeries(construction_status[2], "comp");
+    makeSeries(construction_status[0], "incomp");
+    makeSeries(construction_status[1], "ongoing");
     // makeSeries('Delayed', 'delay');
     chart.appear(1000, 100);
 
@@ -450,7 +450,7 @@ const Chart = () => {
   const valueLabelColor = "#d1d5db";
 
   return (
-    <div>
+    <>
       <div
         style={{
           color: primaryLabelColor,
@@ -499,11 +499,10 @@ const Chart = () => {
       <div
         id={chartID}
         style={{
-          width: "340px",
+          width: "100%",
           height: "60vh",
           backgroundColor: "rgb(0,0,0,0)",
           color: "white",
-          marginRight: "10px",
           marginTop: "5%",
         }}
       ></div>
@@ -524,7 +523,7 @@ const Chart = () => {
           Reset Chart Filter
         </CalciteButton>
       </div>
-    </div>
+    </>
   );
 };
 
