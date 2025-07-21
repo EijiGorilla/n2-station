@@ -29,8 +29,8 @@ function MainChart() {
           width: "550px",
           padding: "0 1rem",
           borderStyle: "solid",
-          borderRightWidth: 3.5,
-          borderLeftWidth: 3.5,
+          borderRightWidth: 4,
+          borderLeftWidth: 4,
           borderBottomWidth: 4.5,
           borderColor: "#555555",
         }}

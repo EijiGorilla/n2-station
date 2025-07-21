@@ -21,7 +21,7 @@ function Header() {
           height: "70px",
           padding: "0 1rem",
           borderStyle: "solid",
-          borderWidth: 1,
+          borderWidth: 4,
         }}
       >
         <img
